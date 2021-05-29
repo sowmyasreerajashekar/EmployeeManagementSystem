@@ -1,0 +1,68 @@
+
+package com.employee.management.system;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.employee.management.system.controller.EmployeeManagementController;
+import com.employee.management.system.vo.EmployeeVO;
+/**
+ * Employee Management App
+ * Execution class
+ * @author Sowmyasree
+ * 
+ */
+public class EmployeeManagementSystem {
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		EmployeeManagementController empController = new EmployeeManagementController();
+		try {
+			System.out.println("Welcome to Employee Management System");
+			System.out.println("Enter 1 to Read the Employee details from HTML and insert it into database");
+			System.out.println("Enter 2 to Display all the Employee Records");
+			System.out.println("Enter 3 to Delete an Employee record");
+			System.out.println("Enter 4 to exit");
+			
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		 
+		    // Reading data using readLine
+		    String inputLine = reader.readLine();
+		    
+		    switch(inputLine) {
+		    case "1" :
+			    System.out.println("Enter the HTML file path.");
+			    String htmlPath = reader.readLine();
+			    empController.processEmployeeDataFromHTML(htmlPath);
+		    	break;
+		    case "2" :	
+		    	empController.displayAllEmployeeRecords();		    	
+		    	break;
+		    case "3" :
+		    	System.out.println("Enter Employee ID to delete the Employee Record");
+		    	String empID = reader.readLine();
+			    empController.deleteEmployeeRecord(empID);
+		    	break;
+		    case "4" :
+		    	System.exit(0);
+		    	break;
+		    default:
+		    	System.out.println("Invalid option Entered");
+		    
+		    }
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+}

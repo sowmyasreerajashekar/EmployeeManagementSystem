@@ -1,0 +1,69 @@
+package com.employee.management.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
+
+import com.employee.management.system.vo.EmployeeVO;
+
+public class EmployeeDAO {
+	
+	
+	private Connection getConnection() {
+		Connection connection = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");  
+			connection=DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/emp_details","root","motherslove@999");   
+			System.out.println("Established a DB connection");
+			/*
+			 * Statement stmt=con.createStatement(); ResultSet
+			 * rs=stmt.executeQuery("select * from emp_details"); while(rs.next())
+			 * System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
+			 */	
+		} catch (Exception e) {
+			System.out.println("Exception caught : " + e.getMessage());
+		}
+		return connection;
+	}
+	
+	public void insertEmployeeDetails(List<EmployeeVO> empList) {
+		
+		try {
+			int count=0;
+			final String INSERT_EMPLOYEE = "INSERT INTO emp_details "
+					+ "(emp_id, emp_first_name, emp_last_name, emp_age, emp_salary, emp_designation ) "
+					+ "VALUES (?,?,?,?,?,?)";
+			PreparedStatement preparedStatement = getConnection().prepareStatement(INSERT_EMPLOYEE);
+				Iterator<EmployeeVO> it = empList.iterator();
+				while (it.hasNext()) {
+					EmployeeVO empVO = it.next();
+					preparedStatement.setInt(1, empVO.getEmpID());
+		            preparedStatement.setString(2, empVO.getEmpFirstName());
+		            preparedStatement.setString(3, empVO.getEmpLastName());
+		            preparedStatement.setString(4, String.valueOf(empVO.getEmpAge()));
+		            preparedStatement.setString(5, String.valueOf(empVO.getEmpSalary()));
+		            preparedStatement.setString(6, String.valueOf(empVO.getEmpDesignation()));
+		            int row = preparedStatement.executeUpdate();
+		         // rows affected
+		            System.out.println(row); //1
+				}
+	            
+
+	            
+		
+		}
+		catch (Exception e){
+			
+		}	
+		finally {
+			// TODO: handle finally clause
+		}
+		getConnection();
+	}
+
+}

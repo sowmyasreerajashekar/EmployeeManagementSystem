@@ -1,0 +1,20 @@
+package com.employee.management.service;
+
+import com.employee.management.dao.EmployeeDAO;
+import com.employee.management.system.vo.EmployeeVO;
+
+/**
+ * 
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeService {
+
+	
+	public void validateEmployeeDetails(EmployeeVO empVO) {
+		EmployeeDAO empDAO = new EmployeeDAO();
+		empDAO.insertEmployeeDetails();
+		
+		
+	}
+}

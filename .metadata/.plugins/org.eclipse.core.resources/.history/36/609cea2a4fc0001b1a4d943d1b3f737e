@@ -1,0 +1,18 @@
+package com.employee.management.service;
+
+import com.employee.management.system.vo.EmployeeVO;
+
+/**
+ * 
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeService {
+
+	
+	public void validateEmployeeDetails(EmployeeVO empVO) {
+		
+		
+		
+	}
+}

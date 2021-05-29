@@ -1,0 +1,61 @@
+package com.employee.management.system.controller;
+
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+/**
+ * Employee controller class
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeManagementController {
+	
+	/**
+	 * Method to read Employee Data from HTML and 
+	 * add it in DB
+	 * @return
+	 */
+	public boolean processEmployeeDataFromHTML() {
+		String html = "C:\\Users\\Sowmyasree\\Desktop\\EmployeeData.html";
+	      try {
+	         Document doc = Jsoup.parse(html);
+	         Element tableElements = doc.select("table").get(0);
+	         Elements rows = tableElements.select("tr");
+	         for (int i = 1; i < rows.size(); i++) { //first row is the col names so skip it.
+	        	    Element row = rows.get(i);
+	        	    Elements cols = row.select("th");
+	        	    System.out.println(cols.get(i).text());
+	         }
+
+	         
+	         
+	         
+
+	         Elements tableHeaderEles = tableElements.select("tr");
+	         System.out.println("headers");
+	         for (int i = 0; i < tableHeaderEles.size(); i++) {
+	            System.out.println(tableHeaderEles.get(i).text());
+	         }
+	         System.out.println();
+
+	         Elements tableRowElements = tableElements.select("tr");
+
+	         for (int i = 0; i < tableRowElements.size(); i++) {
+	            Element row = tableRowElements.get(i);
+	            System.out.println("row");
+	            Elements rowItems = row.select("td");
+	            for (int j = 0; j < rowItems.size(); j++) {
+	               System.out.println(rowItems.get(j).text());
+	            }
+	            System.out.println();
+	         }
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }	
+		return true;
+	}
+
+}

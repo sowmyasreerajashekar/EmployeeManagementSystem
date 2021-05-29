@@ -1,0 +1,12 @@
+package com.employee.management.system.vo;
+
+public class EmployeeVO {
+	
+	private Long empID;
+	private String empFirstName;
+	private String empLastName;
+	private int empAge;
+	private double empSalary;
+	private String empDesignation;
+
+}

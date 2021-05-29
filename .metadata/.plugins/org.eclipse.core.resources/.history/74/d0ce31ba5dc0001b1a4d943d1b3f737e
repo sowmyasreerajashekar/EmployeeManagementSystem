@@ -1,0 +1,65 @@
+
+package com.employee.management.system;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+import com.employee.management.system.controller.EmployeeManagementController;
+/**
+ * 
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeManagementSystem {
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
+		EmployeeManagementController empController = new EmployeeManagementController();
+		try {
+			System.out.println("Welcome to Employee Management System");
+			System.out.println("Enter 1 to read the file from HTML");
+			System.out.println("Enter 2 to insert new Employee record");
+			System.out.println("Enter 3 to update the Employee record");
+			System.out.println("Enter 4 to delete an Employee record");
+			System.out.println("Enter 5 to exit");
+			
+			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		 
+		    // Reading data using readLine
+		    String inputLine = reader.readLine();
+			
+		    
+		    switch(inputLine) {
+		    case "1" :
+			    System.out.println("Enter the HTML file path.");
+			    String htmlPath = reader.readLine();
+			    System.out.println(empController.processEmployeeDataFromHTML(htmlPath));
+			    //System.out.println(empController.processEmployeeDataFromHTML());
+		    	break;
+		    case "2" :
+		    	break;
+		    case "3" :
+		    	break;
+		    case "4" :
+		    	break;
+		    case "5" :
+		    	break;
+		    default:
+		    	System.out.println("Invalid option Entered");
+		    
+		    }
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
+
+}
