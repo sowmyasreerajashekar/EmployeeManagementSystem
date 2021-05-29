@@ -1,0 +1,37 @@
+package com.employee.management.service;
+
+import java.util.Iterator;
+import java.util.List;
+
+import com.employee.management.dao.EmployeeDAO;
+import com.employee.management.system.vo.EmployeeVO;
+
+/**
+ * 
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeService {
+
+	
+	public void validateEmployeeDetails(List<EmployeeVO> empList) {
+		Iterator<EmployeeVO> empIt = empList.iterator();
+		while (empIt.hasNext()) {
+			EmployeeVO empVO = empIt.next();
+			System.out.println(empVO.getEmpFirstName());
+		}
+		
+		EmployeeDAO empDAO = new EmployeeDAO();
+		empDAO.insertEmployeeDetails(empList);
+	}
+	
+	public void displayEmployeeDetails() {
+		EmployeeDAO empDAO = new EmployeeDAO();
+		empDAO.readAllEmployeeDetails();
+	}
+	
+	public void deleteEmployeeDetails(String empId) {
+		EmployeeDAO empDAO = new EmployeeDAO();
+		empDAO.deleteEmployee(empId);
+	}
+}

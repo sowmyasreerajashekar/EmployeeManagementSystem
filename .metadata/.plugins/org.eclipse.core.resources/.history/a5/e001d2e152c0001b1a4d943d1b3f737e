@@ -1,0 +1,61 @@
+package com.employee.management.system.controller;
+
+
+import java.io.File;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import com.employee.management.service.EmployeeService;
+import com.employee.management.system.vo.EmployeeVO;
+/**
+ * Employee controller class
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeManagementController {
+	
+	/**
+	 * Method to read Employee Data from HTML and 
+	 * add it in DB
+	 * @return
+	 */
+	public boolean processEmployeeDataFromHTML(String htmlPath) {
+	      try {
+	    	  EmployeeVO empVO = new EmployeeVO();
+	    	  EmployeeService empService = new EmployeeService();
+	    	  File input = new File(htmlPath);
+	    	  Document doc = Jsoup.parse(input, "UTF-8");
+	    	   for (Element table : doc.select("table")) {
+	    	       for (Element row : table.select("tr")) {
+	    	           Elements tds = row.select("th");
+	    	           if (tds.size() > 0) {
+	    	               System.out.println(tds.get(0).text() + ":" + tds.get(1).text() +":"+tds.get(2).text() + ":" + tds.get(3).text() + ":" + tds.get(4).text() + ":"  );
+	    	           }
+	    	       }
+	    	   }
+	    	   for (Element table : doc.select("table")) {
+	    	       for (Element row : table.select("tr")) {
+	    	           Elements tds = row.select("td");
+	    	           if (tds.size() > 0) {
+	    	               //System.out.println(tds.get(0).text() + ":" + tds.get(1).text() +":"+tds.get(2).text() + ":" + tds.get(3).text() + ":" + tds.get(4).text() + ":"  );
+	    	        	   empVO.setEmpID(Integer.valueOf(tds.get(0).text()));
+	    	        	   empVO.setEmpFirstName(tds.get(1).text());
+	    	        	   empVO.setEmpLastName(tds.get(2).text());
+	    	        	   empVO.setEmpAge(Integer.valueOf(tds.get(3).text()));
+	    	        	   empVO.setEmpSalary(Double.valueOf(tds.get(4).text()));
+	    	        	   empVO.setEmpDesignation(tds.get(5).text());
+	    	           }
+	    	       }
+	    	   }
+	    	   
+	    	   empService.validateEmployeeDetails(empVO);
+		} catch (Exception e) {
+			
+		}
+		return true;
+	}
+
+}

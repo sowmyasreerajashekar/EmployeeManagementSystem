@@ -1,0 +1,39 @@
+package com.employee.management.system.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.employee.management.service.EmployeeService;
+import com.employee.management.helper.EmployeeHelper;
+import com.employee.management.system.vo.EmployeeVO;
+/**
+ * Employee controller class
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeManagementController {
+	
+	
+	/**
+	 * Method to read Employee Data from HTML and 
+	 * add it in DB
+	 * @return
+	 */
+	public boolean processEmployeeDataFromHTML(String htmlPath) {
+		try {
+			EmployeeService empService  = new EmployeeService();
+	    	  List<EmployeeVO> empList = new ArrayList<EmployeeVO>();
+	    	  EmployeeHelper helper = new EmployeeHelper();
+	    	  empList = helper.parseHTMLFile(htmlPath);
+	    	  empService.validateEmployeeDetails(empList);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return true;
+	}
+	
+	public void displayAllEmployeeRecords() {
+		EmployeeService empService = new EmployeeService();
+		empService.displayEmployeeDetails();
+	}
+
+}

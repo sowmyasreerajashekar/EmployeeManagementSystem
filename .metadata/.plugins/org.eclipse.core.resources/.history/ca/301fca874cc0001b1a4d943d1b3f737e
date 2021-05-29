@@ -1,0 +1,30 @@
+package com.employee.management.system.controller;
+
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+/**
+ * Employee controller class
+ * @author Sowmyasree
+ *
+ */
+public class EmployeeManagementController {
+	
+	/**
+	 * Method to read Employee Data from HTML and 
+	 * add it in DB
+	 * @return
+	 */
+	public boolean processEmployeeDataFromHTML(String htmlPath) {
+		//String html = "C:\\Users\\Sowmyasree\\Desktop\\EmployeeData.html";
+	      try {
+			
+		} catch (Exception e) {
+			
+		}
+		return true;
+	}
+
+}

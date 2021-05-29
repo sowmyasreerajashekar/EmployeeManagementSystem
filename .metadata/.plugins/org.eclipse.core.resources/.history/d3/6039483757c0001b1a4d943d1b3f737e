@@ -1,0 +1,5 @@
+package com.employee.management.system.helper;
+
+public class EmployeeHelper {
+
+}
